@@ -109,8 +109,8 @@ class TransformerEncoder(nn.Module):
     def extract_features(self, x, padding_mask=None, tgt_layer=None):
         
         if padding_mask is not None:
-            padding_mask = padding_mask.unsqueeze(-1).expand(-1, -1, x.size(-1))
-            x_masked = x.masked_fill(padding_mask, 0)
+            padding_mask_unsqueezed = padding_mask.unsqueeze(-1).expand(-1, -1, x.size(-1))
+            x_masked = x.masked_fill(padding_mask_unsqueezed, 0)
         else:
             x_masked = x
 
